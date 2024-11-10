@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>String Test</title>
+	<meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+</head>
+
+<body>
+	<h1>String Test</h1>
+	<div id="app">
+		<p>Please enter your name:
+		<input v-model="strName"  ></p>
+
+
+		<p v-if="strName.toLowerCase()=='muntazar'">Awesome name!</p>
+		<p v-else>{{strName}} is not my name!</p>
+
+	</div>
+	<script src="js/vue.js"></script>
+
+	<script>
+ 		//creating new Vue instance
+		Vue.createApp({  //create a new application instance
+			data() {      //data
+				return {strName:""}
+				}
+		}).mount('#app');
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Student Marks</title>
+	<meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+</head>
+<body>
+	<div id="app">
+		<app-readjson></app-readjson>
+	</div>
+
+	<script src="js/vue.js"></script>
+	<script>
+	const { createApp } = Vue
+	const app = createApp()
+
+	app.component('app-readjson', {
+		data: function(){
+			return  {msg:[ ]}
+		},
+		template: `
+		<table>
+			<tr>
+				<th>Code</th>
+				<th>Description</th>
+				<th>cp</th>
+				<th>Type</th>
+			</tr>
+			<tr v-for="m in msg">
+				<td>{{m.userId}}</td>
+				<td>{{m.id}}</td>
+				<td>{{m.title}}</td>
+				<td>{{m.body}}</td>
+			</tr>
+		</table>`,
+		mounted() {
+
+						fetch('https://jsonplaceholder.typicode.com/posts')     //javascript fetch api
+						.then( response =>{
+						  //turning the response into the usable data
+						  return response.json( );
+						})
+						.then( data =>{
+						  //This is the data you wanted to get from url
+						  this.msg=data;
+						})
+						.catch(error => {
+						  this.err=error
+						});
+}
+})
+app.mount('#app')
+	</script>
+
+</body>
+</html>
